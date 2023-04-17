@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 
 import { IPhoneBook } from 'src/app/phone-book';
 
@@ -10,10 +15,11 @@ import { IPhoneBook } from 'src/app/phone-book';
 })
 export class PhoneBookTemplateComponent implements OnInit {
   phoneBookForm!: FormGroup;
+  searchForm!: FormGroup;
   phoneBook: IPhoneBook;
   phoneBookList: IPhoneBook[] = [];
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.phoneBook = {} as IPhoneBook;
   }
 
@@ -27,6 +33,10 @@ export class PhoneBookTemplateComponent implements OnInit {
         Validators.required,
         Validators.pattern('^((\\+31-?)|0)?[0-9]{10}$'),
       ]),
+    });
+
+    this.searchForm = this.formBuilder.group({
+      search: '',
     });
   }
 
