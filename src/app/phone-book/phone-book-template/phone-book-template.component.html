@@ -1,44 +1,53 @@
-<div class="">
-  <form (ngSubmit)="onSubmit()" [formGroup]="phoneBookForm" #form="ngForm">
-    <div class="row">
-      <input
-        type="text"
-        id="firstName"
-        name="firstName"
-        formControlName="firstName"
-        placeholder="First Name"
-        required
-        minlength="1"
-        maxlength="250"
-        [class.is-invalid]="
-          firstName.invalid && (firstName.dirty || firstName.touched)
-        "
-      />
-      <div *ngIf="firstName.errors?.['minlength']">
-        First Name must be at least 2 characters
+<div class="row justify-content-center my-5">
+  <div class="col-4">
+    <form (ngSubmit)="onSubmit()" [formGroup]="phoneBookForm" #form="ngForm">
+      <div class="row">
+        <div class="col mb-2 d-grid">
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+            required
+            minlength="1"
+            maxlength="250"
+            [class.is-invalid]="
+              firstName.invalid && (firstName.dirty || firstName.touched)
+            "
+          />
+          <div *ngIf="firstName.errors?.['minlength']">
+            First Name must be at least 2 characters
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <input
-        type="text"
-        id="phoneNumber"
-        name="phoneNumber"
-        formControlName="phoneNumber"
-        placeholder="Phone"
-        required
-        minlength="1"
-        maxlength="250"
-        [class.is-invalid]="
-          phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
-        "
-      />
-      <div *ngIf="phoneNumber.errors?.['minlength']">
-        Phone Number must be at least 2 characters
+      <div class="row">
+        <div class="col mb-2 d-grid">
+          <input
+            type="text"
+            id="phoneNumber"
+            name="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Phone"
+            required
+            minlength="1"
+            maxlength="250"
+            [class.is-invalid]="
+              phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
+            "
+          />
+          <div *ngIf="phoneNumber.errors?.['minlength']">
+            Phone Number must be at least 2 characters
+          </div>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
-      <button type="submit" (click)="save()">Save</button>
-    </div>
-  </form>
+      <div class="row">
+        <div class="col mb-2 d-grid">
+          <button type="button" class="btn btn-sm btn-primary" (click)="save()">
+            Save
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
