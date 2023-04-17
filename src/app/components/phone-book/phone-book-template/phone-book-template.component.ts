@@ -6,7 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 
-import { IPhoneBook } from 'src/app/phone-book';
+import { IPhoneBook } from 'src/app/models/phone-book.model';
 
 @Component({
   selector: 'app-phone-book-template',
