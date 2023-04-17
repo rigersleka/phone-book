@@ -1,6 +1,10 @@
 <div class="row justify-content-center my-5">
   <div class="col-4">
-    <form (ngSubmit)="onSubmit()" [formGroup]="phoneBookForm" #form="ngForm">
+    <form
+      (ngSubmit)="savePhoneBook()"
+      [formGroup]="phoneBookForm"
+      #form="ngForm"
+    >
       <div class="row">
         <div class="col mb-2 d-grid">
           <input
@@ -12,12 +16,18 @@
             required
             minlength="1"
             maxlength="250"
+            class="form-control form-control-sm"
             [class.is-invalid]="
               firstName.invalid && (firstName.dirty || firstName.touched)
             "
           />
-          <div *ngIf="firstName.errors?.['minlength']">
-            First Name must be at least 2 characters
+          <div
+            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+            class="invalid-feedback"
+          >
+            <div *ngIf="firstName.errors?.['minlength']">
+              First Name must be at least 2 characters
+            </div>
           </div>
         </div>
       </div>
@@ -32,18 +42,17 @@
             required
             minlength="1"
             maxlength="250"
-            [class.is-invalid]="
-              phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
-            "
           />
-          <div *ngIf="phoneNumber.errors?.['minlength']">
-            Phone Number must be at least 2 characters
-          </div>
         </div>
       </div>
       <div class="row">
         <div class="col mb-2 d-grid">
-          <button type="button" class="btn btn-sm btn-primary" (click)="save()">
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            (click)="savePhoneBook()"
+            [disabled]="!phoneBookForm.valid"
+          >
             Save
           </button>
         </div>

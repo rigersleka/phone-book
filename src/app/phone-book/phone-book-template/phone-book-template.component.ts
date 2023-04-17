@@ -40,9 +40,15 @@ export class PhoneBookTemplateComponent implements OnInit {
     return this.phoneBookForm.get('phoneNumber')!;
   }
 
-  onSubmit() {
-    console.log('Add one element');
-  }
+  savePhoneBook(): void {
+    //check validation of all the form
+    if (this.phoneBookForm.invalid) {
+      for (const control of Object.keys(this.phoneBookForm.controls)) {
+        this.phoneBookForm.controls[control].markAsTouched();
+      }
+      return;
+    }
 
-  save() {}
+    this.phoneBook = this.phoneBookForm.value;
+  }
 }
