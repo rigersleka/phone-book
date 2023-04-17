@@ -72,25 +72,4 @@
       </div>
     </form>
   </div>
-  <div *ngIf="phoneBookList != null && phoneBookList.length > 0">
-    <ol>
-      <li
-        *ngFor="let i of phoneBookList | searchFilter : searchForm.value.search"
-      >
-        First name: {{ i.firstName }} - phone number {{ i.phoneNumber }}
-      </li>
-    </ol>
-  </div>
-  <div>
-    <form [formGroup]="searchForm">
-      <div class="row">
-        <input
-          type="text"
-          id="search"
-          formControlName="search"
-          placeholder="Search "
-        />
-      </div>
-    </form>
-  </div>
 </div>

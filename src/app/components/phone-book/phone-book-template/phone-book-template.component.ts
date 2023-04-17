@@ -7,6 +7,8 @@ import {
 } from '@angular/forms';
 
 import { IPhoneBook } from 'src/app/models/phone-book.model';
+import { PhoneBookService } from '../../../service/phone-book.service';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-phone-book-template',
@@ -19,7 +21,10 @@ export class PhoneBookTemplateComponent implements OnInit {
   phoneBook: IPhoneBook;
   phoneBookList: IPhoneBook[] = [];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private phoneBookService: PhoneBookService
+  ) {
     this.phoneBook = {} as IPhoneBook;
   }
 
@@ -58,7 +63,10 @@ export class PhoneBookTemplateComponent implements OnInit {
     }
 
     this.phoneBook = this.phoneBookForm.value;
-    this.phoneBookList.push(this.phoneBook);
+    this.phoneBookService.addPhoneBook(
+      this.phoneBook.firstName,
+      this.phoneBook.phoneNumber
+    );
     this.phoneBookForm.reset();
   }
 }
