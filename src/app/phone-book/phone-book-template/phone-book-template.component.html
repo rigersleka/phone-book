@@ -72,4 +72,11 @@
       </div>
     </form>
   </div>
+  <div *ngIf="phoneBookList != null && phoneBookList.length > 0">
+    <ol>
+      <li *ngFor="let i of phoneBookList">
+        First name: {{ i.firstName }} - phone number {{ i.phoneNumber }}
+      </li>
+    </ol>
+  </div>
 </div>
