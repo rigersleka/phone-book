@@ -1,0 +1,44 @@
+<div class="">
+  <form (ngSubmit)="onSubmit()" [formGroup]="phoneBookForm" #form="ngForm">
+    <div class="row">
+      <input
+        type="text"
+        id="firstName"
+        name="firstName"
+        formControlName="firstName"
+        placeholder="First Name"
+        required
+        minlength="1"
+        maxlength="250"
+        [class.is-invalid]="
+          firstName.invalid && (firstName.dirty || firstName.touched)
+        "
+      />
+      <div *ngIf="firstName.errors?.['minlength']">
+        First Name must be at least 2 characters
+      </div>
+    </div>
+    <div class="row">
+      <input
+        type="text"
+        id="phoneNumber"
+        name="phoneNumber"
+        formControlName="phoneNumber"
+        placeholder="Phone"
+        required
+        minlength="1"
+        maxlength="250"
+        [class.is-invalid]="
+          phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
+        "
+      />
+      <div *ngIf="phoneNumber.errors?.['minlength']">
+        Phone Number must be at least 2 characters
+      </div>
+    </div>
+
+    <div class="row">
+      <button type="submit" (click)="save()">Save</button>
+    </div>
+  </form>
+</div>
