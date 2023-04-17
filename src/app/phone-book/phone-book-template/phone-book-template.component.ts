@@ -11,6 +11,7 @@ import { IPhoneBook } from 'src/app/phone-book';
 export class PhoneBookTemplateComponent implements OnInit {
   phoneBookForm!: FormGroup;
   phoneBook: IPhoneBook;
+  phoneBookList: IPhoneBook[] = [];
 
   constructor() {
     this.phoneBook = {} as IPhoneBook;
@@ -47,5 +48,7 @@ export class PhoneBookTemplateComponent implements OnInit {
     }
 
     this.phoneBook = this.phoneBookForm.value;
+    this.phoneBookList.push(this.phoneBook);
+    this.phoneBookForm.reset();
   }
 }
