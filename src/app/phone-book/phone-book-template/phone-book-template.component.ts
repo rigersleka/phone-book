@@ -25,10 +25,6 @@ export class PhoneBookTemplateComponent implements OnInit {
         Validators.required,
         Validators.minLength(2),
       ]),
-      phoneNumber: new FormControl(this.phoneBook.phoneNumber, [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
     });
   }
 
