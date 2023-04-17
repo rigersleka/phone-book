@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-interface IPhoneBook {
-  firstName: string;
-  phoneNumber: string;
-}
+import { IPhoneBook } from 'src/app/phone-book';
 
 @Component({
   selector: 'app-phone-book-template',
@@ -24,6 +21,10 @@ export class PhoneBookTemplateComponent implements OnInit {
       firstName: new FormControl(this.phoneBook.firstName, [
         Validators.required,
         Validators.minLength(2),
+      ]),
+      phoneNumber: new FormControl(this.phoneBook.phoneNumber, [
+        Validators.required,
+        Validators.pattern('^((\\+31-?)|0)?[0-9]{10}$'),
       ]),
     });
   }
