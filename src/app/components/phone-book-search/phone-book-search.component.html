@@ -1,0 +1,14 @@
+<div>
+  <input
+    type="text"
+    placeholder="search"
+    [(ngModel)]="searchInput"
+    (input)="onSearchItems($event)"
+  />
+</div>
+
+<ol>
+  <li *ngFor="let i of filteredItems$ | async">
+    First name: {{ i.firstName }} - phone number {{ i.phoneNumber }}
+  </li>
+</ol>

@@ -1,3 +1,5 @@
+import { BehaviorSubject, Observable, of } from 'rxjs';
+
 import { IPhoneBook } from '../models/phone-book.model';
 import { Injectable } from '@angular/core';
 
@@ -6,22 +8,23 @@ import { Injectable } from '@angular/core';
 })
 export class PhoneBookService {
   private phoneBookList: IPhoneBook[] = [];
+  private phoneBook$$ = new BehaviorSubject<IPhoneBook[]>([]);
+  phoneBook$ = this.phoneBook$$.asObservable();
 
   constructor() {}
 
-  getPhoneBook() {
-    return this.phoneBookList;
-  }
-
   addPhoneBook(firstName: string, phoneNumber: string) {
     this.phoneBookList.push({ firstName, phoneNumber });
+    this.phoneBook$$.next(this.phoneBookList);
   }
 
-  getSearchPhoneBook(phoneBookListAll: IPhoneBook[], searchValue: string) {
-    return phoneBookListAll.filter((phoneBook) =>
-      `${phoneBook.firstName} ${phoneBook.phoneNumber}`
-        .toLowerCase()
-        .includes(searchValue.toLowerCase())
+  searchPhoneBook(searchValue: string) {
+    const filterUsers: IPhoneBook[] = this.phoneBookList.filter(
+      (phoneBook: IPhoneBook) =>
+        `${phoneBook.firstName} ${phoneBook.phoneNumber}`
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
     );
+    this.phoneBook$$.next(filterUsers);
   }
 }

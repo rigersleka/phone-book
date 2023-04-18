@@ -1,21 +1,6 @@
 <div>
-  <div *ngFor="let i of multipleFormsList">
-    <app-phone-book-template></app-phone-book-template>
-  </div>
-  <div *ngIf="searchPhoneBook != null && searchPhoneBook.length > 0">
-    <div>
-      <input
-        type="text"
-        placeholder="search"
-        [(ngModel)]="searchInput"
-        (input)="getSearchedItems()"
-      />
-    </div>
-
-    <ol>
-      <li *ngFor="let i of searchPhoneBook">
-        First name: {{ i.firstName }} - phone number {{ i.phoneNumber }}
-      </li>
-    </ol>
-  </div>
+  <app-phone-book-multiple></app-phone-book-multiple>
+</div>
+<div>
+  <app-phone-book-search></app-phone-book-search>
 </div>
