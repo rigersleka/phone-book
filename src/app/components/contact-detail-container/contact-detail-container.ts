@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { ContactDetailService } from '../../service/contact-detail.service';
-import { IPhoneBook } from 'src/app/models/phone-book.model';
+import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,14 +11,14 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactDetailContainer implements OnInit {
-  phoneBookList: IPhoneBook[] = [];
-  searchPhoneBook: IPhoneBook[] = [];
-  phoneBookList$: Observable<IPhoneBook[]> =
+  contactDetailList: IContactDetail[] = [];
+  searchContactDetail: IContactDetail[] = [];
+  contactDetailList$: Observable<IContactDetail[]> =
     this.contactDetailService.phoneBook$;
 
   constructor(private contactDetailService: ContactDetailService) {}
 
   ngOnInit(): void {
-    this.searchPhoneBook = this.phoneBookList;
+    this.searchContactDetail = this.contactDetailList;
   }
 }

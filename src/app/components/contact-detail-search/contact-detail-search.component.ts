@@ -2,7 +2,7 @@ import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
 import { Component } from '@angular/core';
 import { ContactDetailService } from 'src/app/service/contact-detail.service';
-import { IPhoneBook } from 'src/app/models/phone-book.model';
+import { IContactDetail } from 'src/app/models/contact-detail.model';
 
 @Component({
   selector: 'contact-detail-search',
@@ -12,22 +12,18 @@ import { IPhoneBook } from 'src/app/models/phone-book.model';
 export class ContactDetailSearch {
   searchInput: string = '';
 
-  private searchPhoneBook$$ = new BehaviorSubject<string>('');
-  private phoneBookList$ = this.contactDetailService.phoneBook$;
+  private searchContactDetail$$ = new BehaviorSubject<string>('');
+  private contactDetailList$ = this.contactDetailService.phoneBook$;
 
-  filteredItems$: Observable<IPhoneBook[]> = combineLatest([
-    this.phoneBookList$,
-    this.searchPhoneBook$$,
+  filteredItems$: Observable<IContactDetail[]> = combineLatest([
+    this.contactDetailList$,
+    this.searchContactDetail$$,
   ]).pipe(
-    map(([phoneBookList, searchPhoneBook]) =>
-      phoneBookList.filter(
-        (phoneBook: IPhoneBook) =>
-          `${phoneBook.firstName} ${phoneBook.phoneNumber}`
-            .toLowerCase()
-            .includes(searchPhoneBook.toLowerCase())
-        // this.phoneBookService.getPhoneBook().filter((phoneBook: IPhoneBook) => `${phoneBook.firstName} ${phoneBook.phoneNumber}`
-        //     .toLowerCase()
-        //     .includes(searchPhoneBook.toLowerCase()))
+    map(([contactDetailList, searchContactDetail]) =>
+      contactDetailList.filter((phoneBook: IContactDetail) =>
+        `${phoneBook.firstName} ${phoneBook.phoneNumber}`
+          .toLowerCase()
+          .includes(searchContactDetail.toLowerCase())
       )
     )
   );
@@ -35,7 +31,7 @@ export class ContactDetailSearch {
   constructor(private contactDetailService: ContactDetailService) {}
 
   onSearchItems(searchContact: Event) {
-    this.searchPhoneBook$$.next(
+    this.searchContactDetail$$.next(
       (searchContact.target as HTMLInputElement).value
     );
   }

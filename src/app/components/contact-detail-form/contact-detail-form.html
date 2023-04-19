@@ -2,7 +2,7 @@
   <div class="col-4">
     <form
       (ngSubmit)="savePhoneBook()"
-      [formGroup]="phoneBookForm"
+      [formGroup]="contactDetailForm"
       #form="ngForm"
     >
       <div class="row">
@@ -64,7 +64,7 @@
             type="button"
             class="btn btn-sm btn-primary"
             (click)="savePhoneBook()"
-            [disabled]="!phoneBookForm.valid"
+            [disabled]="!contactDetailForm.valid"
           >
             Save
           </button>

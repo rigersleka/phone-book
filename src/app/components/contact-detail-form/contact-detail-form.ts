@@ -7,7 +7,7 @@ import {
 } from '@angular/forms';
 
 import { ContactDetailService } from '../../service/contact-detail.service';
-import { IPhoneBook } from 'src/app/models/phone-book.model';
+import { IContactDetail } from 'src/app/models/contact-detail.model';
 
 @Component({
   selector: 'contact-detail-form',
@@ -15,20 +15,20 @@ import { IPhoneBook } from 'src/app/models/phone-book.model';
   styleUrls: ['./contact-detail-form.css'],
 })
 export class ContactDetailForm implements OnInit {
-  phoneBookForm!: FormGroup;
+  contactDetailForm!: FormGroup;
   searchForm!: FormGroup;
-  phoneBook: IPhoneBook;
-  phoneBookList: IPhoneBook[] = [];
+  phoneBook: IContactDetail;
+  contactDetailList: IContactDetail[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private contactDetailService: ContactDetailService
   ) {
-    this.phoneBook = {} as IPhoneBook;
+    this.phoneBook = {} as IContactDetail;
   }
 
   ngOnInit() {
-    this.phoneBookForm = new FormGroup({
+    this.contactDetailForm = new FormGroup({
       firstName: new FormControl(this.phoneBook.firstName, [
         Validators.required,
         Validators.minLength(2),
@@ -45,27 +45,27 @@ export class ContactDetailForm implements OnInit {
   }
 
   get firstName() {
-    return this.phoneBookForm.get('firstName')!;
+    return this.contactDetailForm.get('firstName')!;
   }
 
   get phoneNumber() {
-    return this.phoneBookForm.get('phoneNumber')!;
+    return this.contactDetailForm.get('phoneNumber')!;
   }
 
   savePhoneBook(): void {
     //check validation of all the form
-    if (this.phoneBookForm.invalid) {
-      for (const control of Object.keys(this.phoneBookForm.controls)) {
-        this.phoneBookForm.controls[control].markAsTouched();
+    if (this.contactDetailForm.invalid) {
+      for (const control of Object.keys(this.contactDetailForm.controls)) {
+        this.contactDetailForm.controls[control].markAsTouched();
       }
       return;
     }
 
-    this.phoneBook = this.phoneBookForm.value;
+    this.phoneBook = this.contactDetailForm.value;
     this.contactDetailService.addPhoneBook(
       this.phoneBook.firstName,
       this.phoneBook.phoneNumber
     );
-    this.phoneBookForm.reset();
+    this.contactDetailForm.reset();
   }
 }
