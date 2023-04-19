@@ -17,23 +17,23 @@ import { IContactDetail } from 'src/app/models/contact-detail.model';
 export class ContactDetailForm implements OnInit {
   contactDetailForm!: FormGroup;
   searchForm!: FormGroup;
-  phoneBook: IContactDetail;
+  contactDetail: IContactDetail;
   contactDetailList: IContactDetail[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
     private contactDetailService: ContactDetailService
   ) {
-    this.phoneBook = {} as IContactDetail;
+    this.contactDetail = {} as IContactDetail;
   }
 
   ngOnInit() {
     this.contactDetailForm = new FormGroup({
-      firstName: new FormControl(this.phoneBook.firstName, [
+      firstName: new FormControl(this.contactDetail.firstName, [
         Validators.required,
         Validators.minLength(2),
       ]),
-      phoneNumber: new FormControl(this.phoneBook.phoneNumber, [
+      phoneNumber: new FormControl(this.contactDetail.phoneNumber, [
         Validators.required,
         Validators.pattern('^((\\+31-?)|0)?[0-9]{10}$'),
       ]),
@@ -61,10 +61,10 @@ export class ContactDetailForm implements OnInit {
       return;
     }
 
-    this.phoneBook = this.contactDetailForm.value;
+    this.contactDetail = this.contactDetailForm.value;
     this.contactDetailService.addPhoneBook(
-      this.phoneBook.firstName,
-      this.phoneBook.phoneNumber
+      this.contactDetail.firstName,
+      this.contactDetail.phoneNumber
     );
     this.contactDetailForm.reset();
   }
