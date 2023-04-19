@@ -13,7 +13,7 @@ export class ContactDetailSearch {
   searchInput: string = '';
 
   private searchContactDetail$$ = new BehaviorSubject<string>('');
-  private contactDetailList$ = this.contactDetailService.phoneBook$;
+  private contactDetailList$ = this.contactDetailService.contactDetail$;
 
   filteredItems$: Observable<IContactDetail[]> = combineLatest([
     this.contactDetailList$,

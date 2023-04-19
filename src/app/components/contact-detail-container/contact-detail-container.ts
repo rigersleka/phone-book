@@ -14,7 +14,7 @@ export class ContactDetailContainer implements OnInit {
   contactDetailList: IContactDetail[] = [];
   searchContactDetail: IContactDetail[] = [];
   contactDetailList$: Observable<IContactDetail[]> =
-    this.contactDetailService.phoneBook$;
+    this.contactDetailService.contactDetail$;
 
   constructor(private contactDetailService: ContactDetailService) {}
 

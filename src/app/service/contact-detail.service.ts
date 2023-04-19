@@ -8,23 +8,13 @@ import { Injectable } from '@angular/core';
 })
 export class ContactDetailService {
   private contactDetailList: IContactDetail[] = [];
-  private phoneBook$$ = new BehaviorSubject<IContactDetail[]>([]);
-  phoneBook$ = this.phoneBook$$.asObservable();
+  private contactDetail$$ = new BehaviorSubject<IContactDetail[]>([]);
+  contactDetail$ = this.contactDetail$$.asObservable();
 
   constructor() {}
 
   addPhoneBook(firstName: string, phoneNumber: string) {
     this.contactDetailList.push({ firstName, phoneNumber });
-    this.phoneBook$$.next(this.contactDetailList);
-  }
-
-  searchContactDetail(searchValue: string) {
-    const filterUsers: IContactDetail[] = this.contactDetailList.filter(
-      (phoneBook: IContactDetail) =>
-        `${phoneBook.firstName} ${phoneBook.phoneNumber}`
-          .toLowerCase()
-          .includes(searchValue.toLowerCase())
-    );
-    this.phoneBook$$.next(filterUsers);
+    this.contactDetail$$.next(this.contactDetailList);
   }
 }
