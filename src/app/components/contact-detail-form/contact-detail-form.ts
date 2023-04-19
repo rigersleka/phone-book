@@ -6,16 +6,15 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { ContactDetailService } from '../../service/contact-detail.service';
 import { IPhoneBook } from 'src/app/models/phone-book.model';
-import { PhoneBookService } from '../../../service/phone-book.service';
-import { first } from 'rxjs';
 
 @Component({
-  selector: 'app-phone-book-template',
-  templateUrl: './phone-book-template.component.html',
-  styleUrls: ['./phone-book-template.component.css'],
+  selector: 'contact-detail-form',
+  templateUrl: './contact-detail-form.html',
+  styleUrls: ['./contact-detail-form.css'],
 })
-export class PhoneBookTemplateComponent implements OnInit {
+export class ContactDetailForm implements OnInit {
   phoneBookForm!: FormGroup;
   searchForm!: FormGroup;
   phoneBook: IPhoneBook;
@@ -23,7 +22,7 @@ export class PhoneBookTemplateComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private phoneBookService: PhoneBookService
+    private contactDetailService: ContactDetailService
   ) {
     this.phoneBook = {} as IPhoneBook;
   }
@@ -63,7 +62,7 @@ export class PhoneBookTemplateComponent implements OnInit {
     }
 
     this.phoneBook = this.phoneBookForm.value;
-    this.phoneBookService.addPhoneBook(
+    this.contactDetailService.addPhoneBook(
       this.phoneBook.firstName,
       this.phoneBook.phoneNumber
     );

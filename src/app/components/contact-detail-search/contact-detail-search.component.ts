@@ -1,19 +1,19 @@
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
 import { Component } from '@angular/core';
+import { ContactDetailService } from 'src/app/service/contact-detail.service';
 import { IPhoneBook } from 'src/app/models/phone-book.model';
-import { PhoneBookService } from '../../service/phone-book.service';
 
 @Component({
-  selector: 'app-phone-book-search',
-  templateUrl: './phone-book-search.component.html',
-  styleUrls: ['./phone-book-search.component.css'],
+  selector: 'contact-detail-search',
+  templateUrl: './contact-detail-search.html',
+  styleUrls: ['./contact-detail-search.component.css'],
 })
-export class PhoneBookSearchComponent {
+export class ContactDetailSearch {
   searchInput: string = '';
 
   private searchPhoneBook$$ = new BehaviorSubject<string>('');
-  private phoneBookList$ = this.phoneBookService.phoneBook$;
+  private phoneBookList$ = this.contactDetailService.phoneBook$;
 
   filteredItems$: Observable<IPhoneBook[]> = combineLatest([
     this.phoneBookList$,
@@ -32,7 +32,7 @@ export class PhoneBookSearchComponent {
     )
   );
 
-  constructor(private phoneBookService: PhoneBookService) {}
+  constructor(private contactDetailService: ContactDetailService) {}
 
   onSearchItems(searchContact: Event) {
     this.searchPhoneBook$$.next(

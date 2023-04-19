@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class PhoneBookService {
+export class ContactDetailService {
   private phoneBookList: IPhoneBook[] = [];
   private phoneBook$$ = new BehaviorSubject<IPhoneBook[]>([]);
   phoneBook$ = this.phoneBook$$.asObservable();
