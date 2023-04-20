@@ -9,6 +9,7 @@ import { ContactDetailForms } from './components/contact-detail-forms/contact-de
 import { ContactDetailSearch } from './components/contact-detail-search/contact-detail-search.component';
 import { ContactDetailService } from './service/contact-detail.service';
 import { NgModule } from '@angular/core';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,13 @@ import { NgModule } from '@angular/core';
     ContactDetailContainer,
     ContactDetailSearch,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    WelcomeComponent,
+  ],
   providers: [ContactDetailService],
   bootstrap: [AppComponent],
 })

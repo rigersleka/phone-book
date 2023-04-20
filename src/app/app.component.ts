@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'Contact Detail';
+  title: string = 'Contact Details';
+  logoName =
+    'https://avatars.dicebear.com/api/adventurer-neutral/mail%40ashallendesign.co.uk.svg';
 }
