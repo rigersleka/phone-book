@@ -9,4 +9,9 @@ describe(ContactDetailForms.name, () => {
   it('mounts ContactDetailForms', () => {
     cy.mount(ContactDetailForms, config);
   });
+
+  it('get contact details form', () => {
+    cy.mount(ContactDetailForms, config);
+    cy.get('[data-cy="multi-contact-detail"]');
+  });
 });

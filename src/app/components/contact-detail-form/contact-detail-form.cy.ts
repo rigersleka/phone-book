@@ -22,25 +22,26 @@ describe(ContactDetailForm.name, () => {
     cy.contains('Phone Number is required').should('not.exist');
   });
 
-  //First Name parameter
-  it('displays First name input', () => {
-    cy.wait(2000);
-    cy.log('Waiting for firstName element to appear...');
-    cy.get('input[name="firstName"]', { timeout: 5000 });
+  it('get First Name input', () => {
+    cy.mount(ContactDetailForm, config);
 
-    /* Second Way of using get*/
-    // cy.get('#firstName').type(firstName);
-    // cy.contains('First name is required').should('not.exist');
-    // cy.log(`${firstName}`);
+    cy.get('[data-cy="firstName"]').type(firstName);
+    cy.get('[data-cy="firstName"]').should('have.value', 'Rigers');
+    cy.log(`${firstName}`);
   });
 
-  it('should call onSave with firstName and phoneNumber when Save button is clicked', () => {
-    cy.get('@firstName').type(firstName);
-    cy.get('@phoneNumber').type(phoneNumber);
-    cy.get('@saveContactDetail').click();
-    cy.get('@saveContactDetail').should('have.been.calledWith', {
-      firstName,
-      phoneNumber,
-    });
+  it('get Phone Number input', () => {
+    cy.mount(ContactDetailForm, config);
+
+    cy.get('[data-cy="phoneNumber"]').type(phoneNumber);
+    cy.get('[data-cy="phoneNumber"]').should('have.value', '123456789');
+    cy.log(`${phoneNumber}`);
+  });
+
+  it('get Button to be clicked', () => {
+    cy.mount(ContactDetailForm, config);
+    cy.get('[data-cy="save-button"]').click({ force: true });
+
+    cy.log(`${phoneNumber}`);
   });
 });

@@ -11,6 +11,7 @@
             type="text"
             id="firstName"
             name="firstName"
+            data-cy="firstName"
             formControlName="firstName"
             placeholder="First Name"
             required
@@ -22,6 +23,7 @@
             "
           />
           <div
+            data-cy="valid-firstName"
             *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
             class="invalid-feedback"
           >
@@ -37,6 +39,7 @@
             type="text"
             id="phoneNumber"
             name="phoneNumber"
+            data-cy="phoneNumber"
             formControlName="phoneNumber"
             placeholder="Phone"
             required
@@ -47,6 +50,7 @@
             "
           />
           <div
+            data-cy="valid-firstName"
             *ngIf="
               phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
             "
@@ -63,6 +67,7 @@
           <button
             type="submit"
             id="saveContactDetail"
+            data-cy="save-button"
             class="btn btn-sm btn-primary"
             (click)="savePhoneBook()"
             [disabled]="!contactDetailForm.valid"

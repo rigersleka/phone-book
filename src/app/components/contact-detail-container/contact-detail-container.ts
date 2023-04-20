@@ -5,7 +5,7 @@ import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-phone-book-list',
+  selector: 'contact-detail-container',
   templateUrl: './contact-detail-container.html',
   styleUrls: ['./contact-detail-container.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,

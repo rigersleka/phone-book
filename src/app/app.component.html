@@ -1,2 +1,7 @@
-<app-welcome [title]="title" [logoName]="logoName"></app-welcome>
-<app-phone-book-list></app-phone-book-list>
+<div data-cy="welcome-component">
+  <app-welcome [title]="title" [logoName]="logoName"></app-welcome>
+</div>
+
+<div data-cy="contact-detail">
+  <contact-detail-container></contact-detail-container>
+</div>
