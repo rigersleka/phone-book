@@ -1,5 +1,6 @@
 import { IPhoneBook } from '../models/phone-book.model';
 import { Injectable } from '@angular/core';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,11 +18,13 @@ export class PhoneBookService {
     this.phoneBookList.push({ firstName, phoneNumber });
   }
 
-  getSearchPhoneBook(phoneBookListAll: IPhoneBook[], searchValue: string) {
-    return phoneBookListAll.filter((phoneBook) =>
-      `${phoneBook.firstName} ${phoneBook.phoneNumber}`
-        .toLowerCase()
-        .includes(searchValue.toLowerCase())
+  searchPhoneBook(searchValue: string) {
+    const filterUsers: IPhoneBook[] = this.phoneBookList.filter(
+      (phoneBook: IPhoneBook) =>
+        `${phoneBook.firstName} ${phoneBook.phoneNumber}`
+          .toLowerCase()
+          .includes(searchValue.toLowerCase())
     );
+    return filterUsers;
   }
 }

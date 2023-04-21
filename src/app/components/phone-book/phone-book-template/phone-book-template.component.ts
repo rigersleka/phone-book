@@ -8,7 +8,6 @@ import {
 
 import { IPhoneBook } from 'src/app/models/phone-book.model';
 import { PhoneBookService } from '../../../service/phone-book.service';
-import { first } from 'rxjs';
 
 @Component({
   selector: 'app-phone-book-template',

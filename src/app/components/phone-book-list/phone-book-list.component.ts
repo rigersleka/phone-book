@@ -21,9 +21,8 @@ export class PhoneBookListComponent implements OnInit {
     this.phoneBookList = this.phoneBookService.getPhoneBook();
     this.searchPhoneBook = this.phoneBookList;
   }
-  getSearchedItems() {
-    this.searchPhoneBook = this.phoneBookService.getSearchPhoneBook(
-      this.phoneBookList,
+  onSearchItems() {
+    this.searchPhoneBook = this.phoneBookService.searchPhoneBook(
       this.searchInput
     );
   }
