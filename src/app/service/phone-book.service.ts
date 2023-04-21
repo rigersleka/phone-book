@@ -1,6 +1,5 @@
 import { IPhoneBook } from '../models/phone-book.model';
 import { Injectable } from '@angular/core';
-import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -18,7 +17,7 @@ export class PhoneBookService {
     this.phoneBookList.push({ firstName, phoneNumber });
   }
 
-  searchPhoneBook(searchValue: string) {
+  searchPhoneBook(searchValue: string): IPhoneBook[] {
     const filterUsers: IPhoneBook[] = this.phoneBookList.filter(
       (phoneBook: IPhoneBook) =>
         `${phoneBook.firstName} ${phoneBook.phoneNumber}`
