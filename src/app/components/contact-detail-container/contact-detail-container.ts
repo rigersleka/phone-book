@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { ContactDetailService } from '../../service/contact-detail.service';
-import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { Observable } from 'rxjs';
+import { IContactDetail } from 'src/app/models/contact-detail.model';
+import { ContactDetailService } from '../../service/contact-detail.service';
 
 @Component({
   selector: 'contact-detail-container',

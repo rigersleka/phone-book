@@ -1,8 +1,8 @@
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { ContactDetailService } from 'src/app/service/contact-detail.service';
 import { IContactDetail } from 'src/app/models/contact-detail.model';
+import { ContactDetailService } from 'src/app/service/contact-detail.service';
 
 @Component({
   selector: 'contact-detail-search',
