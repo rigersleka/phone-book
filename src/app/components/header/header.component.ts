@@ -3,13 +3,13 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-welcome',
+  selector: 'app-header',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.css'],
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
 })
-export class WelcomeComponent {
+export class HeaderComponent {
   @Input() title: string = '';
   @Input() logoName = '';
 }

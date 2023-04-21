@@ -8,8 +8,8 @@ import { ContactDetailForm } from './components/contact-detail-form/contact-deta
 import { ContactDetailForms } from './components/contact-detail-forms/contact-detail-forms';
 import { ContactDetailSearch } from './components/contact-detail-search/contact-detail-search.component';
 import { ContactDetailService } from './service/contact-detail.service';
+import { HeaderComponent } from './components/header/header.component';
 import { NgModule } from '@angular/core';
-import { WelcomeComponent } from './components/welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    WelcomeComponent,
+    HeaderComponent,
   ],
   providers: [ContactDetailService],
   bootstrap: [AppComponent],
