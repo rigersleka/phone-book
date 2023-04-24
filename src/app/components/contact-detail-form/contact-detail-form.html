@@ -1,13 +1,16 @@
-<div class="row justify-content-center my-5">
-  <div class="col-4">
+<mat-card>
+  <mat-card-content>
     <form
+      class="contact-detail-form"
       (ngSubmit)="savePhoneBook()"
       [formGroup]="contactDetailForm"
       #form="ngForm"
     >
-      <div class="row">
-        <div class="col mb-2 d-grid">
+      <div class="form-fields">
+        <!-- First Name -->
+        <mat-form-field appearance="fill">
           <input
+            matInput
             type="text"
             id="firstName"
             name="firstName"
@@ -15,27 +18,24 @@
             formControlName="firstName"
             placeholder="First Name"
             required
-            minlength="1"
-            maxlength="250"
-            class="form-control form-control-sm"
             [class.is-invalid]="
               firstName.invalid && (firstName.dirty || firstName.touched)
             "
+            matInput
           />
-          <div
+          <mat-error
             data-cy="valid-firstName"
             *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
-            class="invalid-feedback"
           >
             <div *ngIf="firstName.errors?.['minlength']">
               First Name must be at least 2 characters
             </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col mb-2 d-grid">
+          </mat-error>
+        </mat-form-field>
+        <!-- Phone Number -->
+        <mat-form-field appearance="fill">
           <input
+            matInput
             type="text"
             id="phoneNumber"
             name="phoneNumber"
@@ -48,50 +48,48 @@
             [class.is-invalid]="
               phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
             "
+            matInput
           />
-          <div
-            data-cy="valid-firstName"
-            *ngIf="
+        </mat-form-field>
+        <div
+          data-cy="valid-firstName"
+          *ngIf="
               phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
             "
-            class="invalid-feedback"
-          >
-            <div *ngIf="phoneNumber.errors?.['pattern']">
-              Please, Enter 10 digit Mobile Number
-            </div>
+        >
+          <div *ngIf="phoneNumber.errors?.['pattern']">
+            Please, Enter 10 digit Mobile Number
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col mb-2 d-grid">
-          <select
+        <!-- Select Gender -->
+        <mat-form-field appearance="fill">
+          <mat-label>Select gender</mat-label>
+          <mat-select
             #mySelect
+            required
             formControlName="gender"
             (change)="onGenderSelected(mySelect.value)"
           >
-            <option
+            <mat-option
               *ngFor="let genderItem of genderItems$ | async"
               [value]="genderItem"
             >
               {{ genderItem }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col mb-2 d-grid">
-          <button
-            type="submit"
-            id="saveContactDetail"
-            data-cy="save-button"
-            class="btn btn-sm btn-primary"
-            (click)="savePhoneBook()"
-            [disabled]="!contactDetailForm.valid"
-          >
-            Save
-          </button>
-        </div>
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <!-- Button Save -->
+        <button
+          mat-raised-button
+          type="submit"
+          id="saveContactDetail"
+          data-cy="save-button"
+          (click)="savePhoneBook()"
+          [disabled]="!contactDetailForm.valid"
+        >
+          Save
+        </button>
       </div>
     </form>
-  </div>
-</div>
+  </mat-card-content>
+</mat-card>

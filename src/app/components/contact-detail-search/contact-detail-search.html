@@ -1,15 +1,24 @@
-<div class="my-5">
-  <input
-    type="text"
-    placeholder="search"
-    [(ngModel)]="searchInput"
-    (input)="onSearchItems($event)"
-  />
-</div>
+<mat-card>
+  <mat-card-content>
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        type="text"
+        placeholder="search"
+        [(ngModel)]="searchInput"
+        (input)="onSearchItems($event)"
+      />
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>
 
-<ol>
-  <li *ngFor="let i of filteredItems$ | async">
-    First name: {{ i.firstName }} - phone number {{ i.phoneNumber }} - gender
-    {{i.gender}}
-  </li>
-</ol>
+<mat-card>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let i of filteredItems$ | async">
+        First name: {{ i.firstName }} - phone number {{ i.phoneNumber }} -
+        gender {{i.gender}}
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
