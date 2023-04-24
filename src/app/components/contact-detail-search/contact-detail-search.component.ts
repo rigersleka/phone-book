@@ -15,13 +15,16 @@ export class ContactDetailSearch {
   private searchContactDetail$$ = new BehaviorSubject<string>('');
   private contactDetailList$ = this.contactDetailService.contactDetail$;
 
+  private gendersSubject$$ = new BehaviorSubject<string>('');
+
   filteredItems$: Observable<IContactDetail[]> = combineLatest([
     this.contactDetailList$,
     this.searchContactDetail$$,
+    this.gendersSubject$$,
   ]).pipe(
     map(([contactDetailList, searchContactDetail]) =>
-      contactDetailList.filter((phoneBook: IContactDetail) =>
-        `${phoneBook.firstName} ${phoneBook.phoneNumber}`
+      contactDetailList.filter((contactDetail: IContactDetail) =>
+        `${contactDetail.firstName} ${contactDetail.phoneNumber} ${contactDetail.gender}`
           .toLowerCase()
           .includes(searchContactDetail.toLowerCase())
       )

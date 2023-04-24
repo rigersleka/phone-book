@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { ContactDetailService } from '../../service/contact-detail.service';
@@ -21,11 +21,7 @@ export class ContactDetailForm implements OnInit {
   contactDetail: IContactDetail;
   contactDetailList: IContactDetail[] = [];
 
-  private optionsSubject$$ = new BehaviorSubject<string>('');
-  optionsSubject$ = this.optionsSubject$$.asObservable();
-
   initialGenders = of(['Male', 'Female']);
-  selectedOption = '';
   genderItems$: Observable<string[]>;
 
   constructor(
@@ -47,9 +43,7 @@ export class ContactDetailForm implements OnInit {
         Validators.required,
         Validators.pattern('^((\\+31-?)|0)?[0-9]{10}$'),
       ]),
-      selectGender: new FormControl(this.contactDetail.gender, [
-        Validators.required,
-      ]),
+      gender: new FormControl(this.contactDetail.gender, [Validators.required]),
     });
 
     this.searchForm = this.formBuilder.group({
@@ -65,22 +59,10 @@ export class ContactDetailForm implements OnInit {
     return this.contactDetailForm.get('phoneNumber')!;
   }
 
-  get selectGender() {
-    return this.contactDetailForm.get('selectGender')!;
-  }
-
   getGenderItems() {
     return this.initialGenders;
   }
   savePhoneBook(): void {
-    //check validation of all the form
-    if (this.contactDetailForm.invalid) {
-      for (const control of Object.keys(this.contactDetailForm.controls)) {
-        this.contactDetailForm.controls[control].markAsTouched();
-      }
-      return;
-    }
-
     this.contactDetail = this.contactDetailForm.value;
     this.contactDetailService.addPhoneBook(
       this.contactDetail.firstName,
@@ -89,5 +71,9 @@ export class ContactDetailForm implements OnInit {
     );
 
     this.contactDetailForm.reset();
+  }
+
+  onGenderSelected(value: string) {
+    console.log('the selected value is ' + value);
   }
 }

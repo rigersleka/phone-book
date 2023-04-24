@@ -64,7 +64,11 @@
       </div>
       <div class="row">
         <div class="col mb-2 d-grid">
-          <select [(ngModel)]="selectedOption" formControlName="selectGender">
+          <select
+            #mySelect
+            formControlName="gender"
+            (change)="onGenderSelected(mySelect.value)"
+          >
             <option
               *ngFor="let genderItem of genderItems$ | async"
               [value]="genderItem"
