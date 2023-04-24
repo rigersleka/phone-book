@@ -9,6 +9,7 @@
 
 <ol>
   <li *ngFor="let i of filteredItems$ | async">
-    First name: {{ i.firstName }} - phone number {{ i.phoneNumber }}
+    First name: {{ i.firstName }} - phone number {{ i.phoneNumber }} - gender
+    {{i.gender}}
   </li>
 </ol>

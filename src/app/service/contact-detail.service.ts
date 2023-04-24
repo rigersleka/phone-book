@@ -1,7 +1,6 @@
-import { BehaviorSubject, Observable, of } from 'rxjs';
-
-import { IContactDetail } from '../models/contact-detail.model';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { IContactDetail } from '../models/contact-detail.model';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,8 @@ export class ContactDetailService {
 
   constructor() {}
 
-  addPhoneBook(firstName: string, phoneNumber: string) {
-    this.contactDetailList.push({ firstName, phoneNumber });
+  addPhoneBook(firstName: string, phoneNumber: string, gender: string) {
+    this.contactDetailList.push({ firstName, phoneNumber, gender });
     this.contactDetail$$.next(this.contactDetailList);
   }
 }

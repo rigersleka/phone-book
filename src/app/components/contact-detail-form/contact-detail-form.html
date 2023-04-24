@@ -64,6 +64,18 @@
       </div>
       <div class="row">
         <div class="col mb-2 d-grid">
+          <select [(ngModel)]="selectedOption" formControlName="selectGender">
+            <option
+              *ngFor="let genderItem of genderItems$ | async"
+              [value]="genderItem"
+            >
+              {{ genderItem }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col mb-2 d-grid">
           <button
             type="submit"
             id="saveContactDetail"
