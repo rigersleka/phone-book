@@ -1,0 +1,6 @@
+.contact-detail-page {
+  display: grid;
+  height: 100%;
+  grid-gap: 8px;
+  grid-template-areas: "form search";
+}

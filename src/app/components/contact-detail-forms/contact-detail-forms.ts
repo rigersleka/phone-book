@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./contact-detail-forms.css'],
 })
 export class ContactDetailForms {
-  multipleContactDetailForms: number[] = [1, 2, 3, 4];
+  multipleContactDetailForms: number[] = [1, 2];
 
   constructor() {}
 }

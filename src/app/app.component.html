@@ -1,7 +1,9 @@
-<div data-cy="welcome-component">
-  <app-header [title]="title" [logoName]="logoName"></app-header>
-</div>
+<div class="container">
+  <div data-cy="header-component" class="header">
+    <app-header [title]="title" [logoName]="logoName"></app-header>
+  </div>
 
-<div data-cy="contact-detail">
-  <contact-detail-container></contact-detail-container>
+  <div data-cy="contact-detail">
+    <contact-detail-container></contact-detail-container>
+  </div>
 </div>
