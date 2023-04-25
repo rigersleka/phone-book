@@ -1,7 +1,17 @@
-<div data-cy="welcome-component">
-  <app-header [title]="title" [logoName]="logoName"></app-header>
+<div class="container">
+  <div data-cy="welcome-component" class="header">
+    <app-header [title]="title" [logoName]="logoName"></app-header>
+  </div>
+
+  <div data-cy="contact-detail" class="contact-details">
+    <contact-detail-container></contact-detail-container>
+  </div>
 </div>
 
-<div data-cy="contact-detail">
-  <contact-detail-container></contact-detail-container>
-</div>
+<!-- <mat-form-field appearance="fill">
+  <mat-label>Select gender</mat-label>
+  <mat-select>
+    <mat-option [value]="1"> 1 </mat-option>
+    <mat-option [value]="1"> 1 </mat-option>
+  </mat-select>
+</mat-form-field> -->

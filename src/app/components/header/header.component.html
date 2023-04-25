@@ -1,11 +1,13 @@
-<mat-card>
+<mat-card class="header-card">
   <mat-card-content>
-    <label>
+    <mat-card-title>
       <h1>Welcome {{ title }}</h1>
-    </label>
+    </mat-card-title>
     <mat-card-content>
       <img class="welcome-image" [src]="logoName" mat-card-image />
-      <p>Welcome to my first Stand Alone component!</p>
+      <mat-card-subtitle>
+        Welcome to my first Stand Alone component!
+      </mat-card-subtitle>
     </mat-card-content>
   </mat-card-content>
 </mat-card>

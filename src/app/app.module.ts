@@ -39,7 +39,6 @@ import { ContactDetailService } from './service/contact-detail.service';
     MatIconModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
-    MatInputModule,
     MatCardModule,
     MatListModule,
   ],

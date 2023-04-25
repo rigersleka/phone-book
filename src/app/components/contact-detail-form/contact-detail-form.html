@@ -1,95 +1,84 @@
-<mat-card>
-  <mat-card-content>
-    <form
-      class="contact-detail-form"
-      (ngSubmit)="savePhoneBook()"
-      [formGroup]="contactDetailForm"
-      #form="ngForm"
+<form
+  class="contact-detail-form"
+  (ngSubmit)="savePhoneBook()"
+  [formGroup]="contactDetailForm"
+  #form="ngForm"
+>
+  <!-- First Name -->
+  <mat-form-field>
+    <mat-label> FirstName </mat-label>
+    <input
+      id="firstName"
+      name="firstName"
+      data-cy="firstName"
+      formControlName="firstName"
+      placeholder="First Name"
+      required
+      matInput
+    />
+    <mat-error
+      data-cy="valid-firstName"
+      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
     >
-      <div class="form-fields">
-        <!-- First Name -->
-        <mat-form-field appearance="fill">
-          <input
-            matInput
-            type="text"
-            id="firstName"
-            name="firstName"
-            data-cy="firstName"
-            formControlName="firstName"
-            placeholder="First Name"
-            required
-            [class.is-invalid]="
-              firstName.invalid && (firstName.dirty || firstName.touched)
-            "
-            matInput
-          />
-          <mat-error
-            data-cy="valid-firstName"
-            *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
-          >
-            <div *ngIf="firstName.errors?.['minlength']">
-              First Name must be at least 2 characters
-            </div>
-          </mat-error>
-        </mat-form-field>
-        <!-- Phone Number -->
-        <mat-form-field appearance="fill">
-          <input
-            matInput
-            type="text"
-            id="phoneNumber"
-            name="phoneNumber"
-            data-cy="phoneNumber"
-            formControlName="phoneNumber"
-            placeholder="Phone"
-            required
-            minlength="1"
-            maxlength="250"
-            [class.is-invalid]="
+      <mat-error *ngIf="firstName.errors?.['minlength']">
+        First Name must be at least 2 characters
+      </mat-error>
+    </mat-error>
+  </mat-form-field>
+  <!-- Phone Number -->
+  <mat-form-field class="form-element" appearance="fill">
+    <input
+      type="text"
+      id="phoneNumber"
+      name="phoneNumber"
+      data-cy="phoneNumber"
+      formControlName="phoneNumber"
+      placeholder="Phone"
+      required
+      minlength="1"
+      maxlength="250"
+      [class.is-invalid]="
               phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
             "
-            matInput
-          />
-        </mat-form-field>
-        <div
-          data-cy="valid-firstName"
-          *ngIf="
+      matInput
+    />
+  </mat-form-field>
+  <mat-error
+    data-cy="valid-firstName"
+    *ngIf="
               phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)
             "
-        >
-          <div *ngIf="phoneNumber.errors?.['pattern']">
-            Please, Enter 10 digit Mobile Number
-          </div>
-        </div>
-        <!-- Select Gender -->
-        <mat-form-field appearance="fill">
-          <mat-label>Select gender</mat-label>
-          <mat-select
-            #mySelect
-            required
-            formControlName="gender"
-            (change)="onGenderSelected(mySelect.value)"
-          >
-            <mat-option
-              *ngFor="let genderItem of genderItems$ | async"
-              [value]="genderItem"
-            >
-              {{ genderItem }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-        <!-- Button Save -->
-        <button
-          mat-raised-button
-          type="submit"
-          id="saveContactDetail"
-          data-cy="save-button"
-          (click)="savePhoneBook()"
-          [disabled]="!contactDetailForm.valid"
-        >
-          Save
-        </button>
-      </div>
-    </form>
-  </mat-card-content>
-</mat-card>
+  >
+    <mat-error *ngIf="phoneNumber.errors?.['pattern']">
+      Please, Enter 10 digit Mobile Number
+    </mat-error>
+  </mat-error>
+  <!-- Select Gender -->
+  <mat-form-field class="form-element" appearance="fill">
+    <mat-label>Select gender</mat-label>
+    <mat-select
+      #mySelect
+      required
+      formControlName="gender"
+      (change)="onGenderSelected(mySelect.value)"
+    >
+      <mat-option
+        *ngFor="let genderItem of genderItems$ | async"
+        [value]="genderItem"
+      >
+        {{ genderItem }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- Button Save -->
+  <button
+    mat-raised-button
+    type="submit"
+    id="saveContactDetail"
+    data-cy="save-button"
+    (click)="savePhoneBook()"
+    [disabled]="!contactDetailForm.valid"
+  >
+    Save
+  </button>
+</form>
