@@ -3,10 +3,7 @@
   flex-direction:column;
   width:100%;
   height:100%;
-
-}
-.multiple-card {
-  flex:1;
+}.multiple-card {
   margin-bottom: 30px;
   background-color:aliceblue;
 }

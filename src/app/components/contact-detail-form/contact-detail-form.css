@@ -1,4 +1,4 @@
-:host{
-  display:block;
-  height: 100%;
+.contact-detail-form {
+  display: flex;
+  flex-direction: column;
 }
