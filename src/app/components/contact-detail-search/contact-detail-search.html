@@ -1,24 +1,48 @@
-<mat-card>
-  <mat-card-content>
-    <mat-form-field appearance="fill">
-      <input
-        matInput
-        type="text"
-        placeholder="search"
-        [(ngModel)]="searchInput"
-        (input)="onSearchItems($event)"
-      />
-    </mat-form-field>
-  </mat-card-content>
-</mat-card>
+<div class="contact-detail">
+  <!-- Search Input -->
+  <mat-card>
+    <mat-card-content>
+      <h2>Search All Contact Details</h2>
+      <mat-form-field appearance="fill">
+        <input
+          matInput
+          type="text"
+          placeholder="Type your search"
+          [(ngModel)]="searchInput"
+          (input)="onSearchItems($event)"
+          autocomplete="off"
+        />
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
 
-<mat-card>
-  <mat-card-content>
-    <mat-list>
-      <mat-list-item *ngFor="let i of filteredItems$ | async">
-        First name: {{ i.firstName }} - phone number {{ i.phoneNumber }} -
-        gender {{i.gender}}
-      </mat-list-item>
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+      <!-- Table: Contact Details -->
+      <!-- TODO: hide a table with empty elements -->
+      <ng-container>
+        <table class="contacts-table mat-elevation-z7">
+          <thead>
+            <th>First Name</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+          </thead>
+
+          <tr class="contact-row" *ngFor="let item of filteredItems$ | async">
+            <td class="contact-table-cell">{{item.firstName}}</td>
+            <td class="contact-table-cell">{{item.phoneNumber}}</td>
+            <td class="contact-table-cell">{{item.gender}}</td>
+          </tr>
+        </table>
+      </ng-container>
+
+      <!-- <ng-template #detail>
+        <button mat-raised-button class="back-btn" (click)="onBackToSearch()">
+          <mat-icon>arrow_back_ios</mat-icon>
+          Back to Search
+        </button>
+
+        <contact-detail-item
+          [contactDetailItem]="activeContactDetail"
+        ></contact-detail-item>
+      </ng-template> -->
+    </mat-card-content>
+  </mat-card>
+</div>

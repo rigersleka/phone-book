@@ -1,0 +1,43 @@
+.contact-detail {
+  max-width: 390px;
+}
+
+/* Search */
+.search {
+  margin-left: 10px;
+}
+/* -------------- */
+
+/* Table Styles */
+.contacts-table {
+  margin-top: 10px;
+}
+.search-bar {
+  margin-top: 20px;
+}
+
+.contacts-table tr {
+  height: 60px;
+}
+
+.contacts-table td {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.contacts-table th {
+  padding: 20px;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.contacts-table td {
+  padding: 10px;
+}
+
+.contact-row {
+  cursor: pointer;
+}
+
+.contact-table-cell {
+  text-align: center;
+}
+/* -------------- */
