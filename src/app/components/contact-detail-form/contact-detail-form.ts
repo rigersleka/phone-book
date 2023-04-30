@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -14,6 +14,7 @@ import { ContactDetailService } from '../../service/contact-detail.service';
   selector: 'contact-detail-form',
   templateUrl: './contact-detail-form.html',
   styleUrls: ['./contact-detail-form.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactDetailForm implements OnInit {
   contactDetailForm!: FormGroup;

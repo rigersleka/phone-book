@@ -1,6 +1,6 @@
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
-import { Component } from '@angular/core';
 import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { ContactDetailService } from 'src/app/service/contact-detail.service';
 
@@ -8,6 +8,7 @@ import { ContactDetailService } from 'src/app/service/contact-detail.service';
   selector: 'contact-detail-search',
   templateUrl: './contact-detail-search.html',
   styleUrls: ['./contact-detail-search.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactDetailSearch {
   searchInput: string = '';
@@ -32,7 +33,6 @@ export class ContactDetailSearch {
   );
 
   constructor(private contactDetailService: ContactDetailService) {}
-
   onSearchItems(searchContact: Event) {
     this.searchContactDetail$$.next(
       (searchContact.target as HTMLInputElement).value
