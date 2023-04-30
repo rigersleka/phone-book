@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +18,9 @@ import { ContactDetailForm } from './components/contact-detail-form/contact-deta
 import { ContactDetailForms } from './components/contact-detail-forms/contact-detail-forms';
 import { ContactDetailSearch } from './components/contact-detail-search/contact-detail-search.component';
 import { HeaderComponent } from './components/header/header.component';
+import { LoadingComponent } from './components/loading/loading.component';
 import { ContactDetailService } from './service/contact-detail.service';
+import { LoadingService } from './service/loading.service';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,7 @@ import { ContactDetailService } from './service/contact-detail.service';
     ContactDetailForms,
     ContactDetailContainer,
     ContactDetailSearch,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -41,8 +45,9 @@ import { ContactDetailService } from './service/contact-detail.service';
     MatFormFieldModule,
     MatCardModule,
     MatListModule,
+    MatProgressSpinnerModule
   ],
-  providers: [ContactDetailService],
+  providers: [ContactDetailService, LoadingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
