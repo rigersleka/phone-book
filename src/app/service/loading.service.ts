@@ -3,6 +3,10 @@ import { concatMap, finalize, tap } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
+/**
+  LoadingService -> Share Service where decoupled component communicate with each other
+ */
+
 @Injectable()
 export class LoadingService {
   private loadingSubject = new BehaviorSubject<boolean>(false);

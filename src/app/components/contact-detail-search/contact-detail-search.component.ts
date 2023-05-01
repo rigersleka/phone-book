@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
 import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { ContactDetailService } from 'src/app/service/contact-detail.service';
+import { LoadingService } from '../../service/loading.service';
 
 @Component({
   selector: 'contact-detail-search',
@@ -10,7 +11,7 @@ import { ContactDetailService } from 'src/app/service/contact-detail.service';
   styleUrls: ['./contact-detail-search.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ContactDetailSearch {
+export class ContactDetailSearch implements OnInit {
   searchInput: string = '';
 
   private searchContactDetail$$ = new BehaviorSubject<string>('');
@@ -33,12 +34,20 @@ export class ContactDetailSearch {
     )
   );
 
-  constructor(private contactDetailService: ContactDetailService) {
+  constructor(
+    private contactDetailService: ContactDetailService,
+    private LoadingService: LoadingService
+  ) {
     this.contactDetailData$ = this.contactDetailService.loadAllContactDetails();
   }
   onSearchItems(searchContact: Event) {
     this.searchContactDetail$$.next(
       (searchContact.target as HTMLInputElement).value
     );
+  }
+
+  ngOnInit(): void {
+    this.LoadingService.showLoaderUntilCompleted(this.contactDetailData$);
+    /* this.LoadingService.loadingOn(); */ //let only on the loading
   }
 }

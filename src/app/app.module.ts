@@ -20,8 +20,10 @@ import { ContactDetailForms } from './components/contact-detail-forms/contact-de
 import { ContactDetailSearch } from './components/contact-detail-search/contact-detail-search.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { MessagesComponent } from './components/messages/messages.component';
 import { ContactDetailService } from './service/contact-detail.service';
 import { LoadingService } from './service/loading.service';
+import { MessagesService } from './service/messages.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { LoadingService } from './service/loading.service';
     ContactDetailForms,
     ContactDetailContainer,
     ContactDetailSearch,
-    LoadingComponent
+    LoadingComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { LoadingService } from './service/loading.service';
     MatListModule,
     MatProgressSpinnerModule,
   ],
-  providers: [ContactDetailService, LoadingService],
+  providers: [ContactDetailService, LoadingService, MessagesService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
