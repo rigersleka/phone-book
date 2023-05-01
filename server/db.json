@@ -1,0 +1,19 @@
+{
+  "contact-details": [
+    {
+      "firstName": "Rigers",
+      "phoneNumber": "0123456789",
+      "gender": "Male"
+    },
+    {
+      "firstName": "Paul",
+      "phoneNumber": "2123456891",
+      "gender": "Male"
+    },
+    {
+      "firstName": "Rebecha",
+      "phoneNumber": "0123456789",
+      "gender": "Female"
+    }
+  ]
+}
