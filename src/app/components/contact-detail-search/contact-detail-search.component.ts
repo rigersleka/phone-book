@@ -17,6 +17,7 @@ export class ContactDetailSearch {
   private contactDetailList$ = this.contactDetailService.contactDetail$;
 
   private gendersSubject$$ = new BehaviorSubject<string>('');
+  contactDetailData$: Observable<IContactDetail[]>;
 
   filteredItems$: Observable<IContactDetail[]> = combineLatest([
     this.contactDetailList$,
@@ -32,7 +33,9 @@ export class ContactDetailSearch {
     )
   );
 
-  constructor(private contactDetailService: ContactDetailService) {}
+  constructor(private contactDetailService: ContactDetailService) {
+    this.contactDetailData$ = this.contactDetailService.loadAllContactDetails();
+  }
   onSearchItems(searchContact: Event) {
     this.searchContactDetail$$.next(
       (searchContact.target as HTMLInputElement).value

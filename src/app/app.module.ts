@@ -1,5 +1,6 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -36,16 +37,17 @@ import { LoadingService } from './service/loading.service';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HeaderComponent,
+    BrowserAnimationsModule,
+    HeaderComponent,        // standalone component
+    HttpClientModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    BrowserAnimationsModule,
     MatFormFieldModule,
     MatCardModule,
     MatListModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [ContactDetailService, LoadingService],
   bootstrap: [AppComponent],

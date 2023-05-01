@@ -15,8 +15,6 @@
         <mat-icon matPrefix>search</mat-icon>
       </mat-form-field>
 
-      <!-- Table: Contact Details -->
-      <!-- TODO: hide a table with empty elements -->
       <ng-container>
         <table class="contacts-table mat-elevation-z7">
           <thead>
@@ -30,19 +28,16 @@
             <td class="contact-table-cell">{{item.phoneNumber}}</td>
             <td class="contact-table-cell">{{item.gender}}</td>
           </tr>
+          <tr
+            class="contact-row"
+            *ngFor="let contact of (contactDetailData$ |async)"
+          >
+            <td class="contact-table-cell">{{contact.firstName}}</td>
+            <td class="contact-table-cell">{{contact.phoneNumber}}</td>
+            <td class="contact-table-cell">{{contact.gender}}</td>
+          </tr>
         </table>
       </ng-container>
-
-      <!-- <ng-template #detail>
-        <button mat-raised-button class="back-btn" (click)="onBackToSearch()">
-          <mat-icon>arrow_back_ios</mat-icon>
-          Back to Search
-        </button>
-
-        <contact-detail-item
-          [contactDetailItem]="activeContactDetail"
-        ></contact-detail-item>
-      </ng-template> -->
     </mat-card-content>
   </mat-card>
 </div>
