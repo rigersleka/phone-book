@@ -4,11 +4,15 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IContactDetail } from '../models/contact-detail.model';
 
+/**
+  Design Pattern: : Stateless Observable based Services
+  Service that only retrieve data from a request to backend, but doesn't do anything else. (StoreService does)
+*/
+
 @Injectable({
   providedIn: 'root',
 })
 
-/* Design Pattern: : Stateless Observable based Services */
 export class ContactDetailService {
   private contactDetailList: IContactDetail[] = [];
   private contactDetail$$ = new BehaviorSubject<IContactDetail[]>([]);

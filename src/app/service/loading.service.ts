@@ -11,7 +11,7 @@ import { Injectable } from '@angular/core';
 export class LoadingService {
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
-  loading$: Observable<boolean> = this.loadingSubject.asObservable();
+  loading$: Observable<boolean> = this.loadingSubject.asObservable(); // creates a new observable with this Subject as the source
 
   constructor() {
     console.log('Loading service created ...');
@@ -20,8 +20,8 @@ export class LoadingService {
   showLoaderUntilCompleted<T>(obs$: Observable<T>): Observable<T> {
     return of(null).pipe(
       tap(() => this.loadingOn()),
-      concatMap(() => obs$),
-      finalize(() => this.loadingOff())
+      concatMap(() => obs$), // rxjs operator is going to take the values emitted by the source observable
+      finalize(() => this.loadingOff()) //rxjs operator used to perform a side effect when an Observable sequence is completed or terminated
     );
   }
 
