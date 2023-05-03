@@ -18,7 +18,7 @@ export class ContactDetailSearch implements OnInit {
   private contactDetailList$ = this.contactDetailService.contactDetail$;
 
   private gendersSubject$$ = new BehaviorSubject<string>('');
-  contactDetailData$: Observable<IContactDetail[]>;
+  results$ = this.contactDetailService.results$;
 
   filteredItems$: Observable<IContactDetail[]> = combineLatest([
     this.contactDetailList$,
@@ -37,17 +37,12 @@ export class ContactDetailSearch implements OnInit {
   constructor(
     private contactDetailService: ContactDetailService,
     private LoadingService: LoadingService
-  ) {
-    this.contactDetailData$ = this.contactDetailService.loadAllContactDetails();
-  }
+  ) {}
   onSearchItems(searchContact: Event) {
     this.searchContactDetail$$.next(
       (searchContact.target as HTMLInputElement).value
     );
   }
 
-  ngOnInit(): void {
-    this.LoadingService.showLoaderUntilCompleted(this.contactDetailData$);
-    /* this.LoadingService.loadingOn(); */ //let only on the loading
-  }
+  ngOnInit(): void {}
 }

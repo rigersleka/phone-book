@@ -1,43 +1,49 @@
 <div class="contact-detail">
-  <!-- Search Input -->
-  <mat-card>
-    <mat-card-content>
-      <h2>Search All Contact Details</h2>
-      <mat-form-field appearance="fill">
-        <input
-          matInput
-          type="text"
-          placeholder="Type your search"
-          [(ngModel)]="searchInput"
-          (input)="onSearchItems($event)"
-          autocomplete="off"
-        />
-        <mat-icon matPrefix>search</mat-icon>
-      </mat-form-field>
+  <!-- Display data here -->
+  <p *ngIf="(results$ | async)?.loading; else content">Loading....</p>
+  <ng-template #content>
+    <ng-container *ngIf="(results$ | async)?.error as error">
+      <p>
+        {{error | json}}
+      </p>
+    </ng-container>
+    <!-- Search Input -->
+    <mat-card>
+      <mat-card-content>
+        <h2>Search All Contact Details</h2>
+        <mat-form-field appearance="fill">
+          <input
+            matInput
+            type="text"
+            placeholder="Type your search"
+            [(ngModel)]="searchInput"
+            (input)="onSearchItems($event)"
+            autocomplete="off"
+          />
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
 
-      <ng-container>
-        <table class="contacts-table mat-elevation-z7">
-          <thead>
-            <th>First Name</th>
-            <th>Phone Number</th>
-            <th>Gender</th>
-          </thead>
+        <ng-container>
+          <table class="contacts-table mat-elevation-z7">
+            <thead>
+              <th>First Name</th>
+              <th>Phone Number</th>
+              <th>Gender</th>
+            </thead>
 
-          <tr class="contact-row" *ngFor="let item of filteredItems$ | async">
-            <td class="contact-table-cell">{{item.firstName}}</td>
-            <td class="contact-table-cell">{{item.phoneNumber}}</td>
-            <td class="contact-table-cell">{{item.gender}}</td>
-          </tr>
-          <tr
-            class="contact-row"
-            *ngFor="let contact of (contactDetailData$ |async)"
-          >
-            <td class="contact-table-cell">{{contact.firstName}}</td>
-            <td class="contact-table-cell">{{contact.phoneNumber}}</td>
-            <td class="contact-table-cell">{{contact.gender}}</td>
-          </tr>
-        </table>
-      </ng-container>
-    </mat-card-content>
-  </mat-card>
+            <tr class="contact-row" *ngFor="let item of filteredItems$ | async">
+              <td class="contact-table-cell">{{item.firstName}}</td>
+              <td class="contact-table-cell">{{item.phoneNumber}}</td>
+              <td class="contact-table-cell">{{item.gender}}</td>
+            </tr>
+            <tr class="contact-row" *ngFor="let contact of (results$ | async)?.res">
+              <td class="contact-table-cell">{{contact.firstName}}</td>
+              <td class="contact-table-cell">{{contact.phoneNumber}}</td>
+              <td class="contact-table-cell">{{contact.gender}}</td>
+            </tr>
+          </table>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </ng-template>
 </div>
