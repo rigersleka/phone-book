@@ -2,11 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
-## Run FRONTEND
-npm run start
-## Run REST API JSON server
-1- Open terminal & navigate to server file ./phone-book/server
-2- json-server --watch db.json
+## Run the project by the following commands
+-Frontend
+     npm run start
+-REST API JSON server
+     1- Open terminal & navigate to server file ./phone-book/server
+     2- json-server --watch db.json
+
+## Integrate loadoff using AsyncState from NetanelBasal
+Reference: https://github.com/ngneat/loadoff
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

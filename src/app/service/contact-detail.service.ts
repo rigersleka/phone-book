@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable, map, shareReplay, tap } from 'rxjs';
+import { BehaviorSubject, Observable, shareReplay, tap } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,7 +12,6 @@ import { IContactDetail } from '../models/contact-detail.model';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ContactDetailService {
   private contactDetailList: IContactDetail[] = [];
   private contactDetail$$ = new BehaviorSubject<IContactDetail[]>([]);
@@ -21,15 +20,13 @@ export class ContactDetailService {
 
   constructor(private http: HttpClient) {}
 
-  loadAllContactDetails(): Observable<IContactDetail[]> {
-    return this.http
-      .get<IContactDetail[]>(`${this.baseUrl}/contact-details`)
-      .pipe(
-        map((res: IContactDetail[]) => res),
-        tap((a: IContactDetail[]) => console.log(a)),
-        shareReplay() // for multiple subscription, do only one http-request
-      );
-  }
+  loadAllContactDetails$: Observable<IContactDetail[]> = this.http
+    .get<IContactDetail[]>(`${this.baseUrl}/contact-details`)
+    .pipe(
+      tap((a) => console.log(a)),
+      shareReplay({ bufferSize: 1, refCount: true }) // for multiple subscription, do only one http-request
+    );
+  results$: Observable<IContactDetail[]> = this.loadAllContactDetails$;
 
   addPhoneBook(firstName: string, phoneNumber: string, gender: string) {
     this.contactDetailList.push({ firstName, phoneNumber, gender });
