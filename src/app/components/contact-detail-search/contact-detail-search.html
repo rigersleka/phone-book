@@ -3,9 +3,7 @@
   <p *ngIf="(results$ | async)?.loading; else content">Loading....</p>
   <ng-template #content>
     <ng-container *ngIf="(results$ | async)?.error as error">
-      <p>
-        {{error | json}}
-      </p>
+      <p>{{error | json}}</p>
     </ng-container>
     <!-- Search Input -->
     <mat-card>
@@ -36,7 +34,10 @@
               <td class="contact-table-cell">{{item.phoneNumber}}</td>
               <td class="contact-table-cell">{{item.gender}}</td>
             </tr>
-            <tr class="contact-row" *ngFor="let contact of (results$ | async)?.res">
+            <tr
+              class="contact-row"
+              *ngFor="let contact of (results$ | async)?.res"
+            >
               <td class="contact-table-cell">{{contact.firstName}}</td>
               <td class="contact-table-cell">{{contact.phoneNumber}}</td>
               <td class="contact-table-cell">{{contact.gender}}</td>
