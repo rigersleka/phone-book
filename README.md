@@ -3,13 +3,23 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
 ## Run the project by the following commands
+
 -Frontend
-     npm run start
+npm run start
 -REST API JSON server
-     1- Open terminal & navigate to server file ./phone-book/server
-     2- json-server --watch db.json
+1- Open terminal & navigate to server file ./phone-book/server
+2- json-server --watch db.json
+
+TODO
+
+1. Forms
+   Use only: FormGroup instead of FormBuilder
+   Remove required, use FormControl
+
+2. Implement loadoff into develop only
 
 ## Integrate loadoff using AsyncState from NetanelBasal
+
 Reference: https://github.com/ngneat/loadoff
 
 ## Development server
@@ -37,4 +47,5 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Run json server
+
 json-server --watch db.json

@@ -14,15 +14,14 @@ import { ContactDetailService } from '../../service/contact-detail.service';
   selector: 'contact-detail-form',
   templateUrl: './contact-detail-form.html',
   styleUrls: ['./contact-detail-form.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactDetailForm implements OnInit {
   contactDetailForm!: FormGroup;
   searchForm!: FormGroup;
   contactDetail: IContactDetail;
-  contactDetailList: IContactDetail[] = [];
 
-  initialGenders = of(['Male', 'Female']);
+  initialGenders = of(['Male', 'Female']); //mock data of selection
   genderItems$: Observable<string[]>;
 
   constructor(
@@ -63,6 +62,7 @@ export class ContactDetailForm implements OnInit {
   getGenderItems() {
     return this.initialGenders;
   }
+
   savePhoneBook(): void {
     this.contactDetail = this.contactDetailForm.value;
     this.contactDetailService.addPhoneBook(

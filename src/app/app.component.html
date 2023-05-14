@@ -1,11 +1,10 @@
 <div class="container">
   <div data-cy="header-component" class="header">
+    <!-- Stand Alone component -->
     <app-header [title]="title" [logoName]="logoName"></app-header>
   </div>
-
   <div data-cy="contact-detail">
     <contact-detail-container></contact-detail-container>
   </div>
+  <loading></loading>
 </div>
-
-<loading></loading>

@@ -6,7 +6,7 @@ import { IContactDetail } from '../models/contact-detail.model';
 
 /**
   Design Pattern: : Stateless Observable based Services
-  Service that only retrieve data from a request to backend, but doesn't do anything else. (StoreService does)
+  Service that only retrieve data from a request to backend, but doesn't do anything else. (StoreService does_check check course)
 */
 
 @Injectable({
@@ -20,13 +20,12 @@ export class ContactDetailService {
 
   constructor(private http: HttpClient) {}
 
-  loadAllContactDetails$: Observable<IContactDetail[]> = this.http
+  loadAllResultContactDetails$: Observable<IContactDetail[]> = this.http
     .get<IContactDetail[]>(`${this.baseUrl}/contact-details`)
     .pipe(
       tap((a) => console.log(a)),
       shareReplay({ bufferSize: 1, refCount: true }) // for multiple subscription, do only one http-request
     );
-  results$: Observable<IContactDetail[]> = this.loadAllContactDetails$;
 
   addPhoneBook(firstName: string, phoneNumber: string, gender: string) {
     this.contactDetailList.push({ firstName, phoneNumber, gender });

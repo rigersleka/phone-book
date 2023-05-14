@@ -3,7 +3,6 @@ import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
 
 import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { ContactDetailService } from 'src/app/service/contact-detail.service';
-import { LoadingService } from '../../service/loading.service';
 
 @Component({
   selector: 'contact-detail-search',
@@ -14,14 +13,12 @@ import { LoadingService } from '../../service/loading.service';
 export class ContactDetailSearch implements OnInit {
   searchInput: string = '';
 
+  loadAllResult$ = this.contactDetailService.loadAllResultContactDetails$;
   private searchContactDetail$$ = new BehaviorSubject<string>('');
-  private contactDetailList$ = this.contactDetailService.contactDetail$;
-
   private gendersSubject$$ = new BehaviorSubject<string>('');
-  results$ = this.contactDetailService.results$;
 
   filteredItems$: Observable<IContactDetail[]> = combineLatest([
-    this.contactDetailList$,
+    this.loadAllResult$,
     this.searchContactDetail$$,
     this.gendersSubject$$,
   ]).pipe(
@@ -34,10 +31,8 @@ export class ContactDetailSearch implements OnInit {
     )
   );
 
-  constructor(
-    private contactDetailService: ContactDetailService,
-    private LoadingService: LoadingService
-  ) {}
+  constructor(private contactDetailService: ContactDetailService) {}
+
   onSearchItems(searchContact: Event) {
     this.searchContactDetail$$.next(
       (searchContact.target as HTMLInputElement).value

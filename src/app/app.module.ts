@@ -33,7 +33,7 @@ import { MessagesService } from './service/messages.service';
     ContactDetailContainer,
     ContactDetailSearch,
     LoadingComponent,
-    MessagesComponent
+    MessagesComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +41,7 @@ import { MessagesService } from './service/messages.service';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    HeaderComponent,        // standalone component
+    HeaderComponent, // standalone component be DECLARED at imports, not at DECLARATIONS
     HttpClientModule,
     MatInputModule,
     MatSelectModule,
