@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { BehaviorSubject, Observable, combineLatest, map } from 'rxjs';
+import { BehaviorSubject, Observable, combineLatest, map, tap } from 'rxjs';
 
 import { IContactDetail } from 'src/app/models/contact-detail.model';
 import { ContactDetailService } from 'src/app/service/contact-detail.service';
@@ -11,24 +11,32 @@ import { ContactDetailService } from 'src/app/service/contact-detail.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactDetailSearch {
-  searchInput: string = '';
-
-  loadAllResult$ = this.contactDetailService.loadAllResultContactDetails$;
   private searchContactDetail$$ = new BehaviorSubject<string>('');
-  private gendersSubject$$ = new BehaviorSubject<string>('');
+  loadAllResultContactDetails$ =
+    this.contactDetailService.loadAllResultContactDetails$;
+  addContactDetailElement$ = this.contactDetailService.addContactDetailElement$;
 
-  addContactDetailElement$ = this.contactDetailService.addContactDetailElement$; //TODO: think to merge addedItems with list that exists
+  /**
+    Filter only based on firstName and phoneNumber
+        a) Tuple -> combineLAtest([a, b, c)] with map([a,b, c]), property type have to match based on the position
+        b) map(([a,b,c]) => ); Brackets [] meaning creating an array
+        b) filter -> filter based on 2 properties
+   */
   filteredItems$: Observable<IContactDetail[]> = combineLatest([
-    this.loadAllResult$,
+    this.loadAllResultContactDetails$,
+    this.addContactDetailElement$,
     this.searchContactDetail$$,
-    this.gendersSubject$$,
   ]).pipe(
-    map(([contactDetailList, searchContactDetail]) =>
-      contactDetailList.filter((contactDetail: IContactDetail) =>
-        `${contactDetail.firstName} ${contactDetail.phoneNumber} ${contactDetail.gender}`
-          .toLowerCase()
-          .includes(searchContactDetail.toLowerCase())
-      )
+    tap((a) => console.log(a)),
+    map(
+      ([loadAllResultContactAlResult, addContactDetail, searchContactDetail]) =>
+        loadAllResultContactAlResult
+          .concat(addContactDetail)
+          .filter((contactDetail: IContactDetail) =>
+            `${contactDetail.firstName} ${contactDetail.phoneNumber}`
+              .toLowerCase()
+              .includes(searchContactDetail.toLowerCase())
+          )
     )
   );
 

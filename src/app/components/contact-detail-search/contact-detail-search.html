@@ -26,11 +26,6 @@
             <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
             <td mat-cell class="contact-table-cell">{{item.gender}}</td>
           </tr>
-          <tr class="contact-row" *ngFor="let item of (addContactDetailElement$ | async)">
-            <td mat-cell class="contact-table-cell">{{item.firstName}}</td>
-            <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
-            <td mat-cell class="contact-table-cell">{{item.gender}}</td>
-          </tr>
         </table>
       </ng-container>
     </mat-card-content>
