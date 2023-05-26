@@ -10,6 +10,11 @@ npm run start
 1- Open terminal & navigate to server file ./phone-book/server
 2- json-server --watch db.json
 
+-How to upgrade version of angular?
+ng update -> check framework/cli etc.. that has ben changes
+ref: https://docs.angular.lat/cli/update
+If having any issue use: ng update @angular/cli @angular/core --allow-dirty
+
 TODO
 
 1. Forms

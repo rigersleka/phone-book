@@ -8,7 +8,6 @@
           matInput
           type="text"
           placeholder="Type your search"
-          [(ngModel)]="searchInput"
           (input)="onSearchItems($event)"
           autocomplete="off"
         />
@@ -16,16 +15,21 @@
       </mat-form-field>
       <!-- Display data here -->
       <ng-container>
-        <table class="contacts-table mat-elevation-z7">
+        <table mat-table class="contacts-table mat-elevation-z7">
           <thead>
-            <th>First Name</th>
-            <th>Phone Number</th>
-            <th>Gender</th>
+            <th mat-header-cell>First Name</th>
+            <th mat-header-cell>Phone Number</th>
+            <th mat-header-cell>Gender</th>
           </thead>
-          <tr class="contact-row" *ngFor="let item of filteredItems$ | async">
-            <td class="contact-table-cell">{{item.firstName}}</td>
-            <td class="contact-table-cell">{{item.phoneNumber}}</td>
-            <td class="contact-table-cell">{{item.gender}}</td>
+          <tr class="contact-row" *ngFor="let item of (filteredItems$ | async)">
+            <td mat-cell class="contact-table-cell">{{item.firstName}}</td>
+            <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
+            <td mat-cell class="contact-table-cell">{{item.gender}}</td>
+          </tr>
+          <tr class="contact-row" *ngFor="let item of (addContactDetailElement$ | async)">
+            <td mat-cell class="contact-table-cell">{{item.firstName}}</td>
+            <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
+            <td mat-cell class="contact-table-cell">{{item.gender}}</td>
           </tr>
         </table>
       </ng-container>

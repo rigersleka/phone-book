@@ -9,6 +9,9 @@
 /* -------------- */
 
 /* Table Styles */
+table {
+  width: 100%;
+}
 .contacts-table {
   margin-top: 10px;
 }

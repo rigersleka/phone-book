@@ -9,18 +9,14 @@
     <mat-label> First Name </mat-label>
     <mat-icon matPrefix>people</mat-icon>
     <input
-      id="firstName"
-      name="firstName"
-      placeholder="First Name"
+      matInput
+      type="text"
       formControlName="firstName"
       data-cy="firstName"
-      required
-      matInput
     />
-
     <mat-error
-      data-cy="valid-firstName"
       *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+      data-cy="valid-firstName"
     >
       <mat-error *ngIf="firstName.errors?.['minlength']">
         First Name must be at least 2 characters
@@ -28,34 +24,29 @@
     </mat-error>
   </mat-form-field>
   <!-- Phone Number -->
-  <mat-form-field class="form-element" appearance="fill">
+  <mat-form-field>
     <mat-label> Phone Number </mat-label>
     <mat-icon matPrefix>phone</mat-icon>
     <input
-      id="phoneNumber"
+      matInput
       type="text"
-      name="phoneNumber"
-      placeholder="555-555-1234"
       formControlName="phoneNumber"
       data-cy="phoneNumber"
-      required
-      matInput
     />
   </mat-form-field>
   <mat-error
-    data-cy="valid-phoneNumber"
     *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+    data-cy="valid-phoneNumber"
   >
     <mat-error *ngIf="phoneNumber.errors?.['pattern']">
       Please, Enter 10 digit Mobile Number
     </mat-error>
   </mat-error>
   <!-- Select Gender -->
-  <mat-form-field class="form-element" appearance="fill">
+  <mat-form-field class="form-element">
     <mat-label>Select gender</mat-label>
     <mat-select
       #mySelect
-      required
       formControlName="gender"
       (change)="onGenderSelected(mySelect.value)"
     >

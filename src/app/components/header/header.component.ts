@@ -11,6 +11,6 @@ import { MatCardModule } from '@angular/material/card';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  @Input() title: string = '';
-  @Input() logoName = '';
+  @Input({ required: true }) title: string = '';
+  @Input({ required: true }) logoName = '';
 }

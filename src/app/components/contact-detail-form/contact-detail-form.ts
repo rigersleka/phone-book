@@ -35,15 +35,15 @@ export class ContactDetailForm implements OnInit {
 
   ngOnInit() {
     this.contactDetailForm = new FormGroup({
-      firstName: new FormControl(this.contactDetail.firstName, [
+      firstName: new FormControl<string>('', [
         Validators.required,
         Validators.minLength(2),
       ]),
-      phoneNumber: new FormControl(this.contactDetail.phoneNumber, [
+      phoneNumber: new FormControl<string>('', [
         Validators.required,
         Validators.pattern('^((\\+31-?)|0)?[0-9]{10}$'),
       ]),
-      gender: new FormControl(this.contactDetail.gender, [Validators.required]),
+      gender: new FormControl<string>('', [Validators.required]),
     });
 
     this.searchForm = this.formBuilder.group({
@@ -65,6 +65,7 @@ export class ContactDetailForm implements OnInit {
 
   savePhoneBook(): void {
     this.contactDetail = this.contactDetailForm.value;
+    console.log('contactDetail:', this.contactDetail)
     this.contactDetailService.addPhoneBook(
       this.contactDetail.firstName,
       this.contactDetail.phoneNumber,
