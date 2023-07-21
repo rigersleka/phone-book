@@ -20,7 +20,6 @@ export class ContactDetailForm implements OnInit {
   contactDetailForm!: FormGroup;
   searchForm!: FormGroup;
   contactDetail: IContactDetail;
-
   initialGenders = of(['Male', 'Female']); //mock data of selection
   genderItems$: Observable<string[]>;
 
@@ -31,6 +30,10 @@ export class ContactDetailForm implements OnInit {
     this.contactDetail = {} as IContactDetail;
 
     this.genderItems$ = this.getGenderItems();
+  }
+
+  getGenderItems() {
+    return this.initialGenders;
   }
 
   ngOnInit() {
@@ -51,21 +54,14 @@ export class ContactDetailForm implements OnInit {
     });
   }
 
-  get firstName() {
-    return this.contactDetailForm.get('firstName')!;
-  }
-
-  get phoneNumber() {
-    return this.contactDetailForm.get('phoneNumber')!;
-  }
-
-  getGenderItems() {
-    return this.initialGenders;
+  onGenderSelected(value: string) {
+    console.log('The Gender selected is: ' + value);
   }
 
   savePhoneBook(): void {
     this.contactDetail = this.contactDetailForm.value;
-    console.log('contactDetail:', this.contactDetail)
+    console.log('Contact Details:', this.contactDetail);
+
     this.contactDetailService.addPhoneBook(
       this.contactDetail.firstName,
       this.contactDetail.phoneNumber,
@@ -73,9 +69,5 @@ export class ContactDetailForm implements OnInit {
     );
 
     this.contactDetailForm.reset();
-  }
-
-  onGenderSelected(value: string) {
-    console.log('the selected value is ' + value);
   }
 }

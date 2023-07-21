@@ -32,7 +32,8 @@ export class ContactDetailService {
     );
 
   addPhoneBook(firstName: string, phoneNumber: string, gender: string) {
-    this.contactDetailList.push({ firstName, phoneNumber, gender });
+    this.contactDetailList = [...this.contactDetailList, {firstName, phoneNumber, gender}]
+    // this.contactDetailList.push({ firstName, phoneNumber, gender }); -> better using spread operator instead of push
     console.log('this.contactDetailList:', this.contactDetailList)
     this.addContactDetailElement$$.next(this.contactDetailList);
   }
@@ -40,5 +41,6 @@ export class ContactDetailService {
 
 /**
   shareReplay() & share() have the same behavior
-  Should use share() instead of shareReply(), because the last one is deprecated
+  Should use share() instead of shareReply().
+  Why? shareReply() will be deprecated
  */

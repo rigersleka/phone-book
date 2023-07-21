@@ -1,72 +1,28 @@
-<form
-  class="contact-detail-form"
-  (ngSubmit)="savePhoneBook()"
-  [formGroup]="contactDetailForm"
-  #form="ngForm"
->
+<form class="contact-detail-form" (ngSubmit)="savePhoneBook()" [formGroup]="contactDetailForm" #form="ngForm">
   <!-- First Name -->
   <mat-form-field>
     <mat-label> First Name </mat-label>
     <mat-icon matPrefix>people</mat-icon>
-    <input
-      matInput
-      type="text"
-      formControlName="firstName"
-      data-cy="firstName"
-    />
-    <mat-error
-      *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
-      data-cy="valid-firstName"
-    >
-      <mat-error *ngIf="firstName.errors?.['minlength']">
-        First Name must be at least 2 characters
-      </mat-error>
-    </mat-error>
+    <input matInput type="text" formControlName="firstName" data-cy="firstName" />
   </mat-form-field>
   <!-- Phone Number -->
   <mat-form-field>
     <mat-label> Phone Number </mat-label>
     <mat-icon matPrefix>phone</mat-icon>
-    <input
-      matInput
-      type="text"
-      formControlName="phoneNumber"
-      data-cy="phoneNumber"
-    />
+    <input matInput type="text" formControlName="phoneNumber" data-cy="phoneNumber" />
   </mat-form-field>
-  <mat-error
-    *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
-    data-cy="valid-phoneNumber"
-  >
-    <mat-error *ngIf="phoneNumber.errors?.['pattern']">
-      Please, Enter 10 digit Mobile Number
-    </mat-error>
-  </mat-error>
   <!-- Select Gender -->
   <mat-form-field class="form-element">
     <mat-label>Select gender</mat-label>
-    <mat-select
-      #mySelect
-      formControlName="gender"
-      (change)="onGenderSelected(mySelect.value)"
-    >
-      <mat-option
-        *ngFor="let genderItem of genderItems$ | async"
-        [value]="genderItem"
-      >
+    <mat-select #mySelect formControlName="gender" (change)="onGenderSelected(mySelect.value)">
+      <mat-option *ngFor="let genderItem of genderItems$ | async" [value]="genderItem">
         {{ genderItem }}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <!-- Button Save -->
-  <button
-    id="saveContactDetail"
-    type="submit"
-    (click)="savePhoneBook()"
-    [disabled]="!contactDetailForm.valid"
-    data-cy="save-button"
-    mat-raised-button
-  >
+  <button id="saveContactDetail" type="submit" (click)="savePhoneBook()" [disabled]="!contactDetailForm.valid"
+    data-cy="save-button" mat-raised-button>
     Save
   </button>
 </form>
