@@ -3,17 +3,9 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
 
 ## Run the project by the following commands
-
--Frontend
-npm run start
--REST API JSON server
-1- Open terminal & navigate to server file ./phone-book/server
-2- json-server --watch db.json
-
--How to upgrade version of angular?
-ng update -> check framework/cli etc.. that has ben changes
-ref: https://docs.angular.lat/cli/update
-If having any issue use: ng update @angular/cli @angular/core --allow-dirty
+- Frontend npm run start
+- REST API JSON server
+Navigate to server file ./phone-book/server and Run: json-server --watch db.json
 
 TODO
 
