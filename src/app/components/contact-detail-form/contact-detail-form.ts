@@ -1,10 +1,10 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  inject,
+} from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 
 import { IContactDetail } from 'src/app/models/contact-detail.model';
@@ -17,18 +17,15 @@ import { ContactDetailService } from '../../service/contact-detail.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactDetailForm implements OnInit {
+  private contactDetailService = inject(ContactDetailService);
   contactDetailForm!: FormGroup;
   searchForm!: FormGroup;
   contactDetail: IContactDetail;
   initialGenders = of(['Male', 'Female']); //mock data of selection
   genderItems$: Observable<string[]>;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private contactDetailService: ContactDetailService
-  ) {
+  constructor() {
     this.contactDetail = {} as IContactDetail;
-
     this.genderItems$ = this.getGenderItems();
   }
 
@@ -48,10 +45,6 @@ export class ContactDetailForm implements OnInit {
       ]),
       gender: new FormControl<string>('', [Validators.required]),
     });
-
-    this.searchForm = this.formBuilder.group({
-      search: '',
-    });
   }
 
   onGenderSelected(value: string) {
@@ -61,12 +54,11 @@ export class ContactDetailForm implements OnInit {
   savePhoneBook(): void {
     this.contactDetail = this.contactDetailForm.value;
     console.log('Contact Details:', this.contactDetail);
-
-    this.contactDetailService.addPhoneBook(
-      this.contactDetail.firstName,
-      this.contactDetail.phoneNumber,
-      this.contactDetail.gender
-    );
+    this.contactDetailService.addPhoneBook({
+      firstName: this.contactDetail.firstName,
+      phoneNumber: this.contactDetail.phoneNumber,
+      gender: this.contactDetail.gender,
+    });
 
     this.contactDetailForm.reset();
   }

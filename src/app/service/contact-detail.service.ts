@@ -31,8 +31,8 @@ export class ContactDetailService {
       //shareReplay({ bufferSize: 1, refCount: true }) // for multiple subscription, do only one http-request
     );
 
-  addPhoneBook(firstName: string, phoneNumber: string, gender: string) {
-    this.contactDetailList = [...this.contactDetailList, {firstName, phoneNumber, gender}]
+  addPhoneBook(param: {firstName: string, phoneNumber: string, gender: string}) {
+    this.contactDetailList = [...this.contactDetailList, param as IContactDetail]
     // this.contactDetailList.push({ firstName, phoneNumber, gender }); -> better using spread operator instead of push
     console.log('this.contactDetailList:', this.contactDetailList)
     this.addContactDetailElement$$.next(this.contactDetailList);
