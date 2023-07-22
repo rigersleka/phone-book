@@ -1,7 +1,7 @@
-import { BehaviorSubject, Observable, ReplaySubject, share, tap } from 'rxjs';
+import { BehaviorSubject, Observable, ReplaySubject, share } from 'rxjs';
 
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { IContactDetail } from '../models/contact-detail.model';
 
 /**
@@ -13,17 +13,15 @@ import { IContactDetail } from '../models/contact-detail.model';
   providedIn: 'root',
 })
 export class ContactDetailService {
-  private baseUrl = 'http://localhost:3000';
+  private http = inject(HttpClient);
+  private baseUrl = `http://localhost:3000`;
   private contactDetailList: IContactDetail[] = [];
   private addContactDetailElement$$ = new BehaviorSubject<IContactDetail[]>([]);
-  addContactDetailElement$ = this.addContactDetailElement$$.asObservable();
-
-  constructor(private http: HttpClient) {}
+  readonly addContactDetailElement$ = this.addContactDetailElement$$.asObservable();
 
   loadAllResultContactDetails$: Observable<IContactDetail[]> = this.http
     .get<IContactDetail[]>(`${this.baseUrl}/contact-details`)
     .pipe(
-      tap((a) => console.log(a)),
       share({
         connector: () => new ReplaySubject(1),
         resetOnRefCountZero: true,
