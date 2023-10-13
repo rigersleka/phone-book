@@ -7,14 +7,6 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 - REST API JSON server
 Navigate to server file ./phone-book/server and Run: json-server --watch db.json
 
-TODO
-
-1. Forms
-   Use only: FormGroup instead of FormBuilder
-   Remove required, use FormControl
-
-2. Implement loadoff into develop only
-
 ## Integrate loadoff using AsyncState from NetanelBasal
 
 Reference: https://github.com/ngneat/loadoff
