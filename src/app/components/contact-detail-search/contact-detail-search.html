@@ -1,33 +1,36 @@
-<div class="contact-detail">
-  <mat-card>
-    <mat-card-content>
-      <h2>Search All Contact Details</h2>
-      <mat-form-field appearance="fill">
-        <!-- Search Input -->
-        <input
-          matInput
-          type="text"
-          placeholder="Type your search"
-          (input)="onSearchItems($event)"
-          autocomplete="off"
-        />
-        <mat-icon matPrefix>search</mat-icon>
-      </mat-form-field>
-      <!-- Display data here -->
-      <ng-container>
-        <table mat-table class="contacts-table mat-elevation-z7">
-          <thead>
-            <th mat-header-cell>First Name</th>
-            <th mat-header-cell>Phone Number</th>
-            <th mat-header-cell>Gender</th>
-          </thead>
-          <tr class="contact-row" *ngFor="let item of (filteredItems$ | async)">
-            <td mat-cell class="contact-table-cell">{{item.firstName}}</td>
-            <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
-            <td mat-cell class="contact-table-cell">{{item.gender}}</td>
-          </tr>
-        </table>
-      </ng-container>
-    </mat-card-content>
-  </mat-card>
-</div>
+<!-- <ng-container> makes sure that the only DOM changes being applied are those dictated by the directives themselves -->
+<ng-container *ngIf="filteredItems$ | async as filteredItems">
+  <div class="contact-detail">
+    <mat-card>
+      <mat-card-content>
+        <h2>Search All Contact Details</h2>
+        <mat-form-field appearance="fill">
+          <!-- Search Input -->
+          <input
+            matInput
+            type="text"
+            placeholder="Type your search"
+            (input)="onSearchItems($event)"
+            autocomplete="off"
+          />
+          <mat-icon matPrefix>search</mat-icon>
+        </mat-form-field>
+        <!-- Display data here -->
+        <ng-container>
+          <table mat-table class="contacts-table mat-elevation-z7">
+            <thead>
+              <th mat-header-cell>First Name</th>
+              <th mat-header-cell>Phone Number</th>
+              <th mat-header-cell>Gender</th>
+            </thead>
+            <tr class="contact-row" *ngFor="let item of filteredItems | alphabetical">
+              <td mat-cell class="contact-table-cell">{{item.firstName}}</td>
+              <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
+              <td mat-cell class="contact-table-cell">{{item.gender}}</td>
+            </tr>
+          </table>
+        </ng-container>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-container>
