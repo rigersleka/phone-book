@@ -21,7 +21,6 @@ import { ContactDetailSearch } from './components/contact-detail-search/contact-
 import { HeaderComponent } from './components/header/header.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MessagesComponent } from './components/messages/messages.component';
-import { AlphabeticalPipe } from './pipes/alphabetical.pipe';
 import { ContactDetailService } from './service/contact-detail.service';
 import { LoadingService } from './service/loading.service';
 import { MessagesService } from './service/messages.service';
@@ -36,7 +35,6 @@ import { MessagesService } from './service/messages.service';
     ContactDetailSearch,
     LoadingComponent,
     MessagesComponent,
-    AlphabeticalPipe,
   ],
   imports: [
     BrowserModule,

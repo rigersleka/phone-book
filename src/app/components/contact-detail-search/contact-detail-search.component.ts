@@ -47,4 +47,9 @@ export class ContactDetailSearch {
       (searchContact.target as HTMLInputElement).value
     );
   }
+
+  edit(id: number) {
+    console.log(`ID is ${id}`);
+  }
+
 }

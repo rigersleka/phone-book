@@ -23,10 +23,13 @@
               <th mat-header-cell>Phone Number</th>
               <th mat-header-cell>Gender</th>
             </thead>
-            <tr class="contact-row" *ngFor="let item of filteredItems | alphabetical">
+            <tr class="contact-row" *ngFor="let item of filteredItems">
               <td mat-cell class="contact-table-cell">{{item.firstName}}</td>
               <td mat-cell class="contact-table-cell">{{item.phoneNumber}}</td>
               <td mat-cell class="contact-table-cell">{{item.gender}}</td>
+              <td mat-cell class="contact-table-cell">
+                <button (click)="edit(item.id)"><mat-icon>edit</mat-icon></button>
+              </td>
             </tr>
           </table>
         </ng-container>
